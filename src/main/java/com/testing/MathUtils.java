@@ -10,4 +10,16 @@ public class MathUtils {
 		int a = (int) Math.PI * radius * radius;
 		return a;
 	}
+
+	public int subtract(int a, int b) {
+		return a - b;
+	}
+
+	public int multiply(int a, int b) {
+		return a * b;
+	}
+
+	public int divide(int a, int b) {
+		return (int) a / b;
+	}
 }
