@@ -15,4 +15,12 @@ class MathUtilsTest {
 
 	}
 
+	@Test
+	void test2() {
+		MathUtils mathUtils = new MathUtils();
+		int expected = 75;
+		int actual = mathUtils.computeCircleArea(5);
+		assertEquals(expected, actual);
+	}
+
 }
