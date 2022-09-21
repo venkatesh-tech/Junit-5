@@ -3,13 +3,21 @@ package com.testing;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class MathUtilsTest {
 
+	MathUtils mathUtils;
+
+	@BeforeEach // Run this everytime before every instance
+	void init() {
+		mathUtils = new MathUtils();
+	}
+
 	@Test
 	void testAdd() {
-		MathUtils mathUtils = new MathUtils();
+//		MathUtils mathUtils = new MathUtils();
 		int expected = 2;
 		int actual = mathUtils.add(1, 1);
 		assertEquals(expected, actual, "The add method should add two numbers");
@@ -18,7 +26,7 @@ class MathUtilsTest {
 
 	@Test
 	void testComputeCircleArea() {
-		MathUtils mathUtils = new MathUtils();
+//		MathUtils mathUtils = new MathUtils();
 		int expected = 75;
 		int actual = mathUtils.computeCircleArea(5);
 		assertEquals(expected, actual);
@@ -28,7 +36,7 @@ class MathUtilsTest {
 
 	@Test
 	void testDivide() {
-		MathUtils mathUtils = new MathUtils();
+//		MathUtils mathUtils = new MathUtils();
 		assertThrows(ArithmeticException.class, () -> mathUtils.divide(1, 0), "Divide by zero should throw Exception");
 
 	}
