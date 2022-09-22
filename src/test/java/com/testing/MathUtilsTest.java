@@ -3,6 +3,7 @@ package com.testing;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -70,6 +71,14 @@ class MathUtilsTest {
 	@Disabled
 	void testDisabled() {
 		fail("Should not get implemented");
+	}
+
+	@Test
+	void testAssume() {
+		boolean isServerUp = false;
+		assumeTrue(isServerUp);
+		assertThrows(ArithmeticException.class, () -> mathUtils.divide(1, 0), "Divide by zero should throw Exception");
+
 	}
 
 }
