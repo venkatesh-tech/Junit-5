@@ -91,6 +91,14 @@ class MathUtilsTest {
 	}
 
 	@Test
+	void testAssertMessages() {
+		assertThrows(ArithmeticException.class, () -> mathUtils.divide(1, 0),
+				() -> "Divide by zero should throw Exception"); // this lambda function will only executes if the above
+																// function fails
+
+	}
+
+	@Test
 	@DisplayName("This method should fail")
 	@Disabled
 	void testDisabled() {
