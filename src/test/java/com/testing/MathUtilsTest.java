@@ -2,10 +2,13 @@ package com.testing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -32,6 +35,7 @@ class MathUtilsTest {
 	}
 
 	@Test
+	@DisplayName("Testing add method")
 	void testAdd() {
 //		MathUtils mathUtils = new MathUtils();
 		int expected = 2;
@@ -53,11 +57,19 @@ class MathUtilsTest {
 	}
 
 	@Test
+//	@EnabledOnOs(OS.LINUX) // this works only on Linux os
 	void testDivide() {
 //		MathUtils mathUtils = new MathUtils();
 		System.out.println("method 3");
 		assertThrows(ArithmeticException.class, () -> mathUtils.divide(1, 0), "Divide by zero should throw Exception");
 
+	}
+
+	@Test
+	@DisplayName("This method should fail")
+	@Disabled
+	void testDisabled() {
+		fail("Should not get implemented");
 	}
 
 }
