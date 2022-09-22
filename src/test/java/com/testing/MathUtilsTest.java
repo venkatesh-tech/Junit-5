@@ -12,6 +12,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -119,6 +121,13 @@ class MathUtilsTest {
 				() -> assertEquals(2, mathUtils.add(1, 1), "Adittion")
 
 		);
+	}
+
+	@RepeatedTest(3) // This will run 3 times
+	void testAdd2(RepetitionInfo repetitionInfo) {
+		System.out.println("Repetition #" + repetitionInfo.getCurrentRepetition());
+		assertEquals(7, mathUtils.add(3, 4), "The add method should add two numbers");
+
 	}
 
 }
