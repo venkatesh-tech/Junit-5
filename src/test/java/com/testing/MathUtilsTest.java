@@ -14,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -116,6 +117,7 @@ class MathUtilsTest {
 	}
 
 	@Test
+	@Tag("AssertAll")
 	void AssertAll() {
 		assertAll(() -> assertEquals(4, mathUtils.multiply(2, 2), "Multiplication"),
 				() -> assertEquals(2, mathUtils.add(1, 1), "Adittion")
