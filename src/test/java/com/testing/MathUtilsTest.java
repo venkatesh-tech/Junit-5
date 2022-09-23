@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -16,14 +15,18 @@ import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.TestReporter;
 
 //@TestInstance(Lifecycle.PER_METHOD) // default
 @TestInstance(Lifecycle.PER_CLASS)
 class MathUtilsTest {
 
 	MathUtils mathUtils;
+	TestInfo testInfo;
+	TestReporter testReporter;
 
 	@BeforeAll
 	static void beforeAll() {
@@ -31,14 +34,16 @@ class MathUtilsTest {
 	}
 
 	@BeforeEach // Run this everytime before every instance
-	void init() {
+	void init(TestInfo testInfo, TestReporter testReporter) {
+		this.testInfo = testInfo;
+		this.testReporter = testReporter;
 		mathUtils = new MathUtils();
 	}
 
-	@AfterEach
-	void cleanup() {
-		System.out.println("Cleanig up .....");
-	}
+//	@AfterEach
+//	void cleanup() {
+//		System.out.println("Cleanig up .....");
+//	}
 
 	@Nested
 	class add {
@@ -127,7 +132,9 @@ class MathUtilsTest {
 
 	@RepeatedTest(3) // This will run 3 times
 	void testAdd2(RepetitionInfo repetitionInfo) {
-		System.out.println("Repetition #" + repetitionInfo.getCurrentRepetition());
+//		System.out.println("Repetition #" + repetitionInfo.getCurrentRepetition());
+		testReporter.publishEntry("Repetition #" + repetitionInfo.getCurrentRepetition() + test);
+		testReporter.publishEntry("Running" + testInfo.getDisplayName());
 		assertEquals(7, mathUtils.add(3, 4), "The add method should add two numbers");
 
 	}
